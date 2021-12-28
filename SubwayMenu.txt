@@ -1,47 +1,47 @@
-	Pan
-Integral:330							
-Blanco Italiano:270							
-Multisemillas:300						
-Queso y Especias:310								
-	Proteina							
-BBQ Pork:200						
-Pechuga de Pollo:80							
-Pollo Tikka:100						
-Pollo Empanado:90							
-Salchicha:150							
-Salami:80						
-Pepperoni:80							
-Jamón:60							
-Bacon:80						
-Bistec:110						
-Albóndigas:260							
-	Queso							
-Parmesano en lascas:50						
-Mozarella y Cheddar rallados:40							
-Cheddar:50					
-	Extra							
-Queso:x2Queso						
-Bacon:80						
-Guacamole:70						
-Doble Proteína:X2Proteina							
-	Vegetales							
-Lechuga:5					
-Tomate:5						
-Pepino:5						
-Pimiento:5						
-Cebolla:5						
-Aceituna:5							
-Jalapeño:5						
-Pepinillo:5							
-	Salsas							
-Mostaza y Miel:10							
-Mostaza:10					
-Barbacoa:35							
-Ketchup:20						
-Sweet Onion:40						
-Mayonesa Light:110						
-Alioli Vegano:110							
-Chipotle:60						
-Vinagre:5						
-Aceite de Oliva:40						
-Caesar:80												
+-Pan
+Integral:330
+Blanco Italiano:270
+Multisemillas:300				
+Queso y Especias:310
+-Proteina
+BBQ Pork:200
+Pechuga de Pollo:80
+Pollo Tikka:100
+Pollo Empanado:90
+Salchicha:150
+Salami:80
+Pepperoni:80
+Jamon:60
+Bacon:80
+Bistec:110
+Albondigas:260
+-Queso
+Parmesano en lascas:50
+Mozarella y Cheddar rallados:40
+Cheddar:50
+-Extra
+Queso:x2Queso
+Bacon:80
+Guacamole:70
+Doble Proteina:X2Proteina
+-Vegetales
+Lechuga:5
+Tomate:5
+Pepino:5
+Pimiento:5
+Cebolla:5
+Aceituna:5
+Jalapeno:5
+Pepinillo:5
+-Salsas
+Mostaza y Miel:10
+Mostaza:10
+Barbacoa:35
+Ketchup:20
+Sweet Onion:40
+Mayonesa Light:110
+Alioli Vegano:110
+Chipotle:60
+Vinagre:5
+Aceite de Oliva:40
+Caesar:80
