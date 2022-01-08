@@ -1,4 +1,4 @@
-from random import choice, choices, randint, random
+from random import choice, choices, randbytes, randint, random
 from os import sep
 from tkinter.constants import END
 import re
@@ -14,8 +14,10 @@ class Individuo:
             proteina = 0
             if i.nombre == 'Queso' and i.tipo == 'Extra':
                 self.kilocalorias += queso
+                i.setKilocalorias(queso)
             elif i.nombre == 'Doble Proteina' and i.tipo == 'Extra':
                 self.kilocalorias += proteina
+                i.setKilocalorias(proteina)
             elif i.tipo == 'Proteina':
                 proteina = i.kilocalorias
                 self.kilocalorias += proteina
@@ -25,11 +27,7 @@ class Individuo:
             else:
                 self.kilocalorias += i.kilocalorias
         pass
-    
-    #def __init__(self, individuo):
-    #    self = individuo
-    #    pass
-    
+       
     def printCromosomas(self):
         for i in self.cromosomas:
             i.printAll()
@@ -45,6 +43,7 @@ class Individuo:
     
     
     class Cromosoma:
+
         nombre = ""
         kilocalorias = 0
         tipo = ''
@@ -52,6 +51,9 @@ class Individuo:
             self.nombre = nombre
             self.kilocalorias = int(kilocalorias)
             self.tipo = tipo
+
+        def setKilocalorias(self, kilocalorias):
+            self.kilocalorias = kilocalorias
 
         def printNombre(self):
             print(self.nombre)
@@ -64,8 +66,6 @@ class Individuo:
         
         def getTipo(self):
             return self.tipo
-
-
 
 class Subway:
     numIngredietes = 1
@@ -82,30 +82,41 @@ class Subway:
         for i in range(self.tPoblacion):
             genotipos = []
             #Generamos individuos con al menos 1 pan distinto
-            genotipos.append(choice(self.getListaPan))
-            
-            
-            '''
-            if i < 5:
-                genotipos.append(self.cromosomas[i])
-            else: 
-                genotipos.append(self.cromosomas[randint(0, 4)])
-            #Añadimos una proteina
-            genotipos.append(self.cromosomas[randint(4,11)])
-            ingSelect = 2
-            while ingSelect < self.numIngredietes:
-                genotipos.append(self.cromosomas[randint(12,len(self.cromosomas)-1)])
-                ingSelect += 1
-            '''
+            lista_pan, longitud = self.getListaIngredientes('Pan')
+            genotipos.append(lista_pan[randint(0, longitud-1)])
+            print(genotipos[0])
+            #Generamos individuos con ingredientes aleatorios
+            lista, longitud = self.getListaIngredientes('Proteina')
+            genotipos.append(lista[randint(0, longitud-1)])
+            if randbytes(1):
+                lista, longitud = self.getListaIngredientes('Queso')
+                genotipos.append(lista[randint(0, longitud-1)])
+            if randbytes(1):
+                lista, longitud = self.getListaIngredientes('Extra')
+                genotipos.append(lista[randint(0, longitud-1)])
+            if randbytes(1):
+                lista, longitud = self.getListaIngredientes('Vegetales')
+                for _ in range(randint(0, longitud-1)):
+                    if randbytes(1):
+                        genotipos.append(lista.pop(randint(0, longitud-1)))
+                        longitud -= 1
+            if randbytes(1):
+                lista, longitud = self.getListaIngredientes('Salsas')
+                for _ in range(randint(0, longitud-1)):
+                    if randbytes(1):
+                        genotipos.append(lista.pop(randint(0, longitud-1)))
+                        longitud -= 1
             self.poblacion.append(Individuo(genotipos))
         pass
     
-    def getListaPan(self):
+    def getListaIngredientes(self, ingrediente):
         pan = []
+        longitud = 0
         for i in self.cromosomas:
-            if i.getTipo() == 'Pan':
+            if i.getTipo() == ingrediente:
                 pan.append(i)
-        return pan
+                longitud += 1
+        return pan, longitud
             
     
     def getPoblacion(self):
