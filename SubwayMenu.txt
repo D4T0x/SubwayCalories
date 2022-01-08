@@ -20,10 +20,10 @@ Parmesano en lascas:50
 Mozarella y Cheddar rallados:40
 Cheddar:50
 -Extra
-Queso:x2Queso
+Queso:0
 Bacon:80
 Guacamole:70
-Doble Proteina:X2Proteina
+Doble Proteina:0
 -Vegetales
 Lechuga:5
 Tomate:5
