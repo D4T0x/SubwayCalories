@@ -49,29 +49,30 @@ class Individuo:
         for _ in self.cromosomas:
             contador += 1
         return contador
-            
+    
+    @staticmethod
     def recombinar(i1, i2):
         i1Len = int(i1.getCromosomaLen()) 
         i2Len = int(i2.getCromosomaLen())
         if i1Len >= i2Len:
             #Generar plantilla
             boleanos = [True, False]
-            plantilla = choice(boleanos, size=i1Len)
+            plantilla = choices(boleanos, k=i1Len)
             ii1 = []
             ii2 = []
             pos = 0
             for i in plantilla:
                 if i:
                     ii1.append(i1.cromosomas[pos])
-                    if pos <= i2Len:
+                    if pos < i2Len:
                         ii2.append(i2.cromosomas[pos])
                     pos += 1
                 else:
-                    if pos <= i2Len:
+                    if pos < i2Len:
                         ii1.append(i2.cromosomas[pos])
                     ii2.append(i1.cromosomas[pos])
                     pos += 1
-            return Individuo(i1), Individuo(i2)
+            return i1, i2
         else:
             return i1.recombinar(i2, i1)
         pass
@@ -111,6 +112,7 @@ class Subway:
     tPoblacion = 5
     cromosomas = []
     numGeneraciones = 5
+    kilocaloriasDeseadas = 1000
 
     def __init__(self, nombFich):
         self.abrirFichero(nombFich)
@@ -120,7 +122,6 @@ class Subway:
             #Generamos individuos con al menos 1 pan distinto
             lista_pan, longitud = self.getListaIngredientes('Pan')
             genotipos.append(lista_pan[randint(0, longitud-1)])
-            print(genotipos[0])
             #Generamos individuos con ingredientes aleatorios
             lista, longitud = self.getListaIngredientes('Proteina')
             genotipos.append(lista[randint(0, longitud-1)])
@@ -176,7 +177,6 @@ class Subway:
 
     def evolucionar(self):
         generacion = 0
-        
         while generacion <= self.numGeneraciones:
             print("Generacion = ", generacion)
             while True:
@@ -194,6 +194,17 @@ class Subway:
             if random() <= self.probMutar:
                 print("mutar") 
             generacion += 1
+            #Sustituir en poblacion
+            if self.poblacion[idx1].getKilocalorias() < self.kilocaloriasDeseadas:
+                if i1Tmp.getKilocalorias() < self.kilocaloriasDeseadas:
+                    self.poblacion[idx1] = i1Tmp
+            elif i1Tmp.getKilocalorias() < self.kilocaloriasDeseadas:
+                self.poblacion[idx1] = i1Tmp
+            if self.poblacion[idx2].getKilocalorias() < self.kilocaloriasDeseadas:
+                if i2Tmp.getKilocalorias() < self.kilocaloriasDeseadas:
+                    self.poblacion[idx2] = i2Tmp
+            elif i2Tmp.getKilocalorias() < self.kilocaloriasDeseadas:
+                self.poblacion[idx2] = i2Tmp
 
 prueba = Subway('SubwayMenu.txt')
 for i in prueba.poblacion:
@@ -203,8 +214,3 @@ prueba.evolucionar()
 for i in prueba.poblacion:
     print(i.getKilocalorias())
     i.printCromosomas()
-#for i in prueba.cromosomas:
-#    i.printNombre()
-#individuo = prueba.poblacion[1]
-#cromosomas = individuo.getCromosomas()
-#print(cromosomas[0])
