@@ -41,6 +41,41 @@ class Individuo:
     def getIngrediente(self):
         return random.choice(self.cromosomas)
     
+    def getCromosoma(self):
+        return self.cromosomas
+    
+    def getCromosomaLen(self):
+        contador = 0
+        for _ in self.cromosomas:
+            contador += 1
+        return contador
+            
+    def recombinar(i1, i2):
+        i1Len = int(i1.getCromosomaLen()) 
+        i2Len = int(i2.getCromosomaLen())
+        if i1Len >= i2Len:
+            #Generar plantilla
+            boleanos = [True, False]
+            plantilla = choice(boleanos, size=i1Len)
+            ii1 = []
+            ii2 = []
+            pos = 0
+            for i in plantilla:
+                if i:
+                    ii1.append(i1.cromosomas[pos])
+                    if pos <= i2Len:
+                        ii2.append(i2.cromosomas[pos])
+                    pos += 1
+                else:
+                    if pos <= i2Len:
+                        ii1.append(i2.cromosomas[pos])
+                    ii2.append(i1.cromosomas[pos])
+                    pos += 1
+            return Individuo(i1), Individuo(i2)
+        else:
+            return i1.recombinar(i2, i1)
+        pass
+    
     
     class Cromosoma:
 
@@ -69,12 +104,13 @@ class Individuo:
 
 class Subway:
     numIngredietes = 1
-    probMutar = 0.0
-    prob = 0.0
+    probMutar = 0.99
+    prob = 0.99
     numSeleccionados = 0
     poblacion = []
     tPoblacion = 5
     cromosomas = []
+    numGeneraciones = 5
 
     def __init__(self, nombFich):
         self.abrirFichero(nombFich)
@@ -116,8 +152,7 @@ class Subway:
             if i.getTipo() == ingrediente:
                 pan.append(i)
                 longitud += 1
-        return pan, longitud
-            
+        return pan, longitud       
     
     def getPoblacion(self):
         return self.poblacion
@@ -139,7 +174,32 @@ class Subway:
             else:
                 tipo = re.sub("(-)", "", dat[0])
 
+    def evolucionar(self):
+        generacion = 0
+        
+        while generacion <= self.numGeneraciones:
+            print("Generacion = ", generacion)
+            while True:
+                idx1 = randint(0, self.tPoblacion-1)
+                idx2 = randint(0, self.tPoblacion-1)
+                if idx1 != idx2:
+                    break
+            #Seleccion
+            i1Tmp = self.poblacion[idx1]
+            i2Tmp = self.poblacion[idx2]
+            #Recombinar
+            if random() <= self.prob:
+                i1Tmp, i2Tmp = i1Tmp.recombinar(i1Tmp ,i2Tmp)
+            #Mutar
+            if random() <= self.probMutar:
+                print("mutar") 
+            generacion += 1
+
 prueba = Subway('SubwayMenu.txt')
+for i in prueba.poblacion:
+    print(i.getKilocalorias())
+    i.printCromosomas()
+prueba.evolucionar()
 for i in prueba.poblacion:
     print(i.getKilocalorias())
     i.printCromosomas()
