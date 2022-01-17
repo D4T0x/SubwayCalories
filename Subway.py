@@ -75,8 +75,21 @@ class Individuo:
             return i1, i2
         else:
             return i1.recombinar(i2, i1)
-        pass
     
+    def mutar(self, cromosomas):
+        for i in self.cromosomas:
+            if randbytes(1):
+                ingredientes, longitud = self.getListaIngredientes(i.getTipo(), cromosomas)
+                i = ingredientes[randint(0, longitud-1)]
+    
+    def getListaIngredientes(self, ingrediente, cromosomas):
+        ingredientes = []
+        longitud = 0
+        for i in cromosomas:
+            if i.getTipo() == ingrediente:
+                ingredientes.append(i)
+                longitud += 1
+        return ingredientes, longitud
     
     class Cromosoma:
 
@@ -107,7 +120,6 @@ class Subway:
     numIngredietes = 1
     probMutar = 0.99
     prob = 0.99
-    numSeleccionados = 0
     poblacion = []
     tPoblacion = 5
     cromosomas = []
@@ -175,10 +187,23 @@ class Subway:
             else:
                 tipo = re.sub("(-)", "", dat[0])
 
+    def getMejor(self):
+        actual = self.poblacion[0]
+        mejor = actual
+        contador = 1
+        while True:
+            if actual.getKilocalorias() <= self.kilocaloriasDeseadas:
+                if mejor.getKilocalorias() <= self.kilocaloriasDeseadas:
+                    if mejor.getKilocalorias() < actual.getKilocalorias():
+                        mejor = actual
+            contador += 1
+            if contador == 5:
+                break
+        return mejor
+    
     def evolucionar(self):
         generacion = 0
         while generacion <= self.numGeneraciones:
-            print("Generacion = ", generacion)
             while True:
                 idx1 = randint(0, self.tPoblacion-1)
                 idx2 = randint(0, self.tPoblacion-1)
@@ -192,7 +217,7 @@ class Subway:
                 i1Tmp, i2Tmp = i1Tmp.recombinar(i1Tmp ,i2Tmp)
             #Mutar
             if random() <= self.probMutar:
-                print("mutar") 
+                i1Tmp.mutar(self.cromosomas)
             generacion += 1
             #Sustituir en poblacion
             if self.poblacion[idx1].getKilocalorias() < self.kilocaloriasDeseadas:
@@ -207,10 +232,6 @@ class Subway:
                 self.poblacion[idx2] = i2Tmp
 
 prueba = Subway('SubwayMenu.txt')
-for i in prueba.poblacion:
-    print(i.getKilocalorias())
-    i.printCromosomas()
 prueba.evolucionar()
-for i in prueba.poblacion:
-    print(i.getKilocalorias())
-    i.printCromosomas()
+mejor = prueba.getMejor()
+print(mejor.getKilocalorias(), mejor.printCromosomas())
