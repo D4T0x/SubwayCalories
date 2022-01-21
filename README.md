@@ -29,4 +29,4 @@ La combinación a realizar se compone de los pasos destacados en el menú:
 
 - 5 topping
 
-Lo que generaría las suficientes combinaciones para que una inteligencia artificial nos ayudara a realizar una selección de la mejor solución.e 
+Lo que generaría las suficientes combinaciones para que una inteligencia artificial nos ayudara a realizar una selección de la mejor solución.
