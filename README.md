@@ -11,7 +11,7 @@ Su implantación se va a realizar en un código en Python, por su portabilidad y
 
 El menú utilizado es el de Subway España:
 
-![Menu Subway España](![image](https://github.com/D4T0x/SubwayCalories/blob/main/menu.PNG))
+[Menu Subway España]([image](https://github.com/D4T0x/SubwayCalories/blob/main/menu.PNG))
 
 La combinación a realizar se compone de los pasos destacados en el menú:
 
