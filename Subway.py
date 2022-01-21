@@ -9,9 +9,9 @@ class Individuo:
 
     def __init__(self, cromosomas):
         self.cromosomas = cromosomas
+        proteina = 0
+        queso = 0
         for i in cromosomas:
-            queso = 0
-            proteina = 0
             if i.nombre == 'Queso' and i.tipo == 'Extra':
                 self.kilocalorias += queso
                 i.setKilocalorias(queso)
@@ -101,6 +101,9 @@ class Individuo:
             self.kilocalorias = int(kilocalorias)
             self.tipo = tipo
 
+        def getNombre(self):
+            return self.nombre
+        
         def setKilocalorias(self, kilocalorias):
             self.kilocalorias = kilocalorias
 
@@ -124,9 +127,10 @@ class Subway:
     tPoblacion = 5
     cromosomas = []
     numGeneraciones = 5
-    kilocaloriasDeseadas = 1000
+    kilocaloriasDeseadas = 0
 
-    def __init__(self, nombFich):
+    def __init__(self, nombFich, kilocalorias):
+        self.kilocaloriasDeseadas = kilocalorias
         self.abrirFichero(nombFich)
         #Iniciamos una población del tamaño especificado
         for i in range(self.tPoblacion):
@@ -231,7 +235,8 @@ class Subway:
             elif i2Tmp.getKilocalorias() < self.kilocaloriasDeseadas:
                 self.poblacion[idx2] = i2Tmp
 
-prueba = Subway('SubwayMenu.txt')
-prueba.evolucionar()
-mejor = prueba.getMejor()
-print(mejor.getKilocalorias(), mejor.printCromosomas())
+#prueba = Subway('SubwayMenu.txt', 1000)
+#prueba.evolucionar()
+#mejor = prueba.getMejor()
+#print(mejor.getKilocalorias(), mejor.printCromosomas())
+
