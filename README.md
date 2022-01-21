@@ -16,17 +16,16 @@ El menú utilizado es el de Subway España:
 La combinación a realizar se compone de los pasos destacados en el menú:
 
 - 4 Bases
-
 - 13 Proteínas
-
 - 3 Quesos
-
 - 4 Extras
-
 - 8 Vegetales
-
 - 11 Salsas
-
 - 5 topping
 
 Lo que generaría las suficientes combinaciones para que una inteligencia artificial nos ayudara a realizar una selección de la mejor solución.
+
+# Mejoras
+
+- Volver a generar un bocadillo desde la interfaz introduciendo los datos nuevos sin tener que cerrar el programa.
+- Generar una interfaz previa para seleccionar los ingredientes que más te gustan y descartar los otros.
