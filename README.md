@@ -1,4 +1,6 @@
 # SubwayCalories
+# Uso
+`python ./Vista.py`
 #  Diseño Sistema Inteligente
 
 En este proyecto se va a construir un software basado en algoritmos de computación evolutiva.
