@@ -202,8 +202,9 @@ class Subway:
                 if mejor.getKilocalorias() <= self.kilocaloriasDeseadas:
                     if mejor.getKilocalorias() < actual.getKilocalorias():
                         mejor = actual
+            actual = self.poblacion[contador]
             contador += 1
-            if contador == 5:
+            if contador == self.tPoblacion:
                 break
         return mejor
     
