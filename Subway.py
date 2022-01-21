@@ -129,8 +129,10 @@ class Subway:
     numGeneraciones = 5
     kilocaloriasDeseadas = 0
 
-    def __init__(self, nombFich, kilocalorias):
+    def __init__(self, nombFich, kilocalorias, tPoblacion, numGeneraciones):
         self.kilocaloriasDeseadas = kilocalorias
+        self.tPoblacion = tPoblacion
+        self.numGeneraciones = numGeneraciones
         self.abrirFichero(nombFich)
         #Iniciamos una población del tamaño especificado
         for i in range(self.tPoblacion):
@@ -239,4 +241,3 @@ class Subway:
 #prueba.evolucionar()
 #mejor = prueba.getMejor()
 #print(mejor.getKilocalorias(), mejor.printCromosomas())
-
