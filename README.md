@@ -11,7 +11,7 @@ Su implantación se va a realizar en un código en Python, por su portabilidad y
 
 El menú utilizado es el de Subway España:
 
-![Menu Subway España](C:\Users\Desktop\AppData\Roaming\Typora\typora-user-images\image-20211228170143469.png)
+![Menu Subway España](![image](https://user-images.githubusercontent.com/75228166/150454390-accd282d-24cc-4a0f-8973-865c8dd5a8b5.png))
 
 La combinación a realizar se compone de los pasos destacados en el menú:
 
